@@ -40,9 +40,6 @@ ARCHIDROID_GCC_CFLAGS := -O3 -fgcse-las -fgcse-sm -fipa-pta -fivopts -fomit-fram
 # Current setup is based on proposed androideabi toolchain
 # Results with other toolchains may vary
 
-# These flags work fine in suggested compiler, but may cause ICEs in other compilers, comment if needed
-ARCHIDROID_GCC_CFLAGS += -fgraphite -fgraphite-identity
-
 # The following flags (-floop) require that your GCC has been configured with --with-isl
 # Additionally, applying any of them will most likely cause ICE in your compiler, so they're disabled
 # ARCHIDROID_GCC_CFLAGS += -floop-block -floop-interchange -floop-nest-optimize -floop-parallelize-all -floop-strip-mine
@@ -57,9 +54,6 @@ ARCHIDROID_GCC_CFLAGS += -fgraphite -fgraphite-identity
 # Flags passed to GCC preprocessor for C and C++
 ARCHIDROID_GCC_CPPFLAGS := $(ARCHIDROID_GCC_CFLAGS)
 
-# Flags passed to linker (ld) of all C and C++ targets compiled with GCC
-ARCHIDROID_GCC_LDFLAGS := -Wl,--sort-common
-
 #####################
 ### CLANG SECTION ###
 #####################
@@ -69,9 +63,6 @@ ARCHIDROID_CLANG_CFLAGS := -O3 -Qunused-arguments -Wno-unknown-warning-option
 
 # Flags passed to CLANG preprocessor for C and C++
 ARCHIDROID_CLANG_CPPFLAGS := $(ARCHIDROID_CLANG_CFLAGS)
-
-# Flags passed to linker (ld) of all C and C++ targets compiled with CLANG
-ARCHIDROID_CLANG_LDFLAGS := -Wl,--sort-common
 
 # Flags that are used by GCC, but are unknown to CLANG. If you get "argument unused during compilation" error, add the flag here
 ARCHIDROID_CLANG_UNKNOWN_FLAGS := \
@@ -117,3 +108,39 @@ ARCHIDROID_CLANG_UNKNOWN_FLAGS := \
 # However, if you use compiled recovery.img for your device, please disable this flag (comment or set to false), and lower
 # optimization levels instead
 ARCHIDROID_IGNORE_RECOVERY_SIZE := true
+
+########################
+### GRAPHITE SECTION ###
+########################
+
+DISABLE_GRAPHITE := \
+	libunwind \
+	libFFTEm \
+	libicui18n \
+	libskia \
+	libvpx \
+	libmedia_jni \
+	libstagefright_mp3dec \
+	libart \
+	libstagefright_amrwbenc \
+	libpdfium \
+	libpdfiumcore \
+	libwebviewchromium \
+	libwebviewchromium_loader \
+	libwebviewchromium_plat_support \
+	libjni_filtershow_filters \
+	fio \
+	libwebrtc_spl \
+	libpcap \
+	libsigchain \
+	libFraunhoferAAC \
+	libavcodec \
+	libavformat \
+	libavutil \
+	libswscale
+
+ifndef LOCAL_IS_HOST_MODULE
+ifneq ($(filter $(DISABLE_GRAPHITE), $(LOCAL_MODULE)),)
+	ARCHIDROID_GCC_CFLAGS += -fgraphite -fgraphite-identity
+endif
+endif
