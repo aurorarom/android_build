@@ -23,14 +23,27 @@
 ### GENERAL SECTION ###
 #######################
 
-# General optimization level of target ARM compiled with GCC. Default: -O2
-ARCHIDROID_GCC_CFLAGS_ARM := -O3
+ifeq ($(strip $(TARGET_GCC_OPTMIZATION)),)
+	# General optimization level of target ARM compiled with GCC. Default: -O2
+	ARCHIDROID_GCC_CFLAGS_ARM := $(TARGET_GCC_VERSION_EXP)
 
-# General optimization level of target THUMB compiled with GCC. Default: -Os
-ARCHIDROID_GCC_CFLAGS_THUMB := -O3
+	# General optimization level of target THUMB compiled with GCC. Default: -Os
+	ARCHIDROID_GCC_CFLAGS_THUMB := $(TARGET_GCC_VERSION_EXP)
 
-# Additional flags passed to all C targets compiled with GCC
-ARCHIDROID_GCC_CFLAGS := -O3 -fgcse-las -fgcse-sm -fipa-pta -fivopts -fomit-frame-pointer -frename-registers -fsection-anchors -ftracer -ftree-loop-im -ftree-loop-ivcanon -funsafe-loop-optimizations -funswitch-loops -fweb -Wno-error=array-bounds -Wno-error=clobbered -Wno-error=maybe-uninitialized -Wno-error=strict-overflow
+	# Additional flags passed to all C targets compiled with GCC
+	ARCHIDROID_GCC_CFLAGS := $(TARGET_GCC_VERSION_EXP) -fgcse-las -fgcse-sm -fipa-pta -fivopts -fomit-frame-pointer -frename-registers -fsection-anchors -ftracer -ftree-loop-im -ftree-loop-ivcanon -funsafe-loop-optimizations -funswitch-loops -fweb -Wno-error=array-bounds -Wno-error=clobbered -Wno-error=maybe-uninitialized -Wno-error=strict-overflow
+else
+	# General optimization level of target ARM compiled with GCC. Default: -O2
+	ARCHIDROID_GCC_CFLAGS_ARM := -O3
+
+	# General optimization level of target THUMB compiled with GCC. Default: -Os
+	ARCHIDROID_GCC_CFLAGS_THUMB := -O3
+
+	# Additional flags passed to all C targets compiled with GCC
+	ARCHIDROID_GCC_CFLAGS := -O3 -fgcse-las -fgcse-sm -fipa-pta -fivopts -fomit-frame-pointer -frename-registers -fsection-anchors -ftracer -ftree-loop-im -ftree-loop-ivcanon -funsafe-loop-optimizations -funswitch-loops -fweb -Wno-error=array-bounds -Wno-error=clobbered -Wno-error=maybe-uninitialized -Wno-error=strict-overflow
+endif
+
+
 
 ############################
 ### EXPERIMENTAL SECTION ###
