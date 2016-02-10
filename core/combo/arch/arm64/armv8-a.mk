@@ -8,5 +8,6 @@ endif
 # Leave the flag so devices that need the workaround but don't fit in
 # the check above can still enable it.
 ifeq ($(TARGET_CPU_CORTEX_A53),true)
-arch_variant_ldflags := -Wl,--fix-cortex-a53-835769
+arch_variant_ldflags := -Wl,--fix-cortex-a53-843419 \
+                        -Wl,--fix-cortex-a53-835769
 endif
