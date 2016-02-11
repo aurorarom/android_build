@@ -38,7 +38,7 @@ else
 	arch_variant_cflags := -march=armv7-a -mfpu=neon
 	# Generic ARM might be a Cortex A8 -- better safe than sorry
 	arch_variant_ldflags := \
-		-Wl,--fix-cortex-a8
+		-Wl,--no-fix-cortex-a8
 endif
 endif
 endif
