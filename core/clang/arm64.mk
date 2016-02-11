@@ -16,8 +16,7 @@ CLANG_CONFIG_arm64_UNKNOWN_CFLAGS := \
   -frename-registers \
   -fno-strict-volatile-bitfields \
   -fno-align-jumps \
-  -Wa,--noexecstack \
-  -mno-fix-cortex-a53-835769
+  -Wa,--noexecstack
 
 # We don't have any arm64 flags to substitute yet.
 define subst-clang-incompatible-arm64-flags

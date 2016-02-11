@@ -1,8 +1,4 @@
-ifeq ($(strip $(TARGET_CPU_VARIANT)),cortex-a53)
-	arch_variant_cflags := -mcpu=cortex-a53
-else
-	arch_variant_cflags :=
-endif
+arch_variant_cflags :=
 
 # If the chip uses a53 cores, enable the errata workarounds
 ifneq ($(filter $(TARGET_CPU_VARIANT) $(TARGET_2ND_CPU_VARIANT),cortex-a53),)
