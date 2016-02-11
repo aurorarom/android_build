@@ -35,10 +35,14 @@ ifeq ($(strip $(TARGET_$(combo_2nd_arch_prefix)CPU_VARIANT)),cortex-a5)
 	arch_variant_ldflags := \
 		-Wl,--no-fix-cortex-a8
 else
+ifeq ($(strip $(TARGET_$(combo_2nd_arch_prefix)CPU_VARIANT)),cortex-a53)
+	arch_variant_cflags := -mcpu=cortex-a53
+else
 	arch_variant_cflags := -march=armv7-a -mfpu=neon
 	# Generic ARM might be a Cortex A8 -- better safe than sorry
 	arch_variant_ldflags := \
-		-Wl,--fix-cortex-a8
+		-Wl,--no-fix-cortex-a8
+endif
 endif
 endif
 endif

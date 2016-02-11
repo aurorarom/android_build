@@ -47,5 +47,9 @@ endif
 HOST_JAVAC ?= $(COMMON_JAVAC)
 TARGET_JAVAC ?= $(COMMON_JAVAC)
 
+AJC_MAIN_CLASS := org.aspectj.tools.ajc.Main
+COMMON_AJC := java -Xmx256m
+TARGET_AJC ?= $(COMMON_AJC)
+
 #$(info HOST_JAVAC=$(HOST_JAVAC))
 #$(info TARGET_JAVAC=$(TARGET_JAVAC))
