@@ -115,10 +115,17 @@ TARGET_GLOBAL_LDFLAGS += \
 
 TARGET_GLOBAL_CPPFLAGS += -fvisibility-inlines-hidden
 
+# AuroraROM
+include $(BUILD_SYSTEM)/aurorarom.mk
+
+TARGET_GLOBAL_CFLAGS += $(AURORAROM_GCC_CFLAGS)
+TARGET_GLOBAL_CPPFLAGS += $(AURORAROM_GCC_CPPFLAGS)
+TARGET_GLOBAL_LDFLAGS += $(AURORAROM_GCC_LDFLAGS)
+
 # More flags/options can be added here
 TARGET_RELEASE_CFLAGS := \
 			-DNDEBUG \
-			-O2 -g \
+			$(AURORAROM_GCC_CFLAGS_ARM) \
 			-Wstrict-aliasing=2 \
 			-fgcse-after-reload \
 			-frerun-cse-after-loop \

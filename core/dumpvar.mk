@@ -84,6 +84,18 @@ $(info   HOST_OS_EXTRA=$(HOST_OS_EXTRA))
 $(info   HOST_BUILD_TYPE=$(HOST_BUILD_TYPE))
 $(info   BUILD_ID=$(BUILD_ID))
 $(info   OUT_DIR=$(OUT_DIR))
+ifeq ($(USE_STRICT),true)
+$(info   STRICT=$(USE_STRICT))
+endif
+ifeq ($(USE_O3),true)
+$(info   O3=$(USE_O3))
+endif
+ifeq ($(USE_GRAPHITE),true)
+$(info   GRAPHITE=$(USE_GRAPHITE))
+endif
+ifeq ($(USE_FLOOP),true)
+$(info   FLOOP=$(USE_FLOOP))
+endif
 ifneq (,$(filter true, $(CYNGN_TARGET) $(EXTERNAL_CLEAN_TARGET)))
 ifeq ($(CYNGN_TARGET), true)
 $(info   CYNGN_TARGET=$(CYNGN_TARGET))
