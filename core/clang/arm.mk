@@ -27,5 +27,10 @@ CLANG_CONFIG_arm_UNKNOWN_CFLAGS := \
 define subst-clang-incompatible-arm-flags
   $(subst -march=armv5te,-march=armv5t,\
   $(subst -march=armv5e,-march=armv5,\
-  $(1)))
+  $(subst -march=armv7ve,-march=armv7-a,\
+  $(subst -mcpu=cortex-a15,-march=armv7-a,\
+  $(subst -mcpu=cortex-a12.cortex-a7,-march=armv7-a,\
+  $(subst -mcpu=cortex-a53,-mcpu=cortex-a7,\
+  $(subst -mtune=cortex-a53,-mtune=cortex-a7,\
+  $(1))))))))
 endef
