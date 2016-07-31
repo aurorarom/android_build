@@ -25,10 +25,10 @@ endif
 # Decouple NDK library selection with platform compiler version
 $(combo_2nd_arch_prefix)TARGET_NDK_GCC_VERSION := 4.8
 
-ifeq ($(strip $(TARGET_GCC_VERSION_EXP)),)
+ifeq ($(strip $(TARGET_GCC_VERSION_EXP_2ND_ARCH)),)
 $(combo_2nd_arch_prefix)TARGET_GCC_VERSION := 4.8
 else
-$(combo_2nd_arch_prefix)TARGET_GCC_VERSION := $(TARGET_GCC_VERSION_EXP)
+$(combo_2nd_arch_prefix)TARGET_GCC_VERSION := $(TARGET_GCC_VERSION_EXP_2ND_ARCH)
 endif
 
 # Include the arch-variant-specific configuration file.
